@@ -85,7 +85,7 @@ async function ollamaGenerate(prompt: string, parameters?: OllamaGenerateParamet
   params.stream = false
 
   try {
-    const response = await fetch(`http://${logseq.settings.host}/api/generate`, {
+    const response = await fetch(`${logseq.settings.scheme}://${logseq.settings.host}/api/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,14 +93,14 @@ async function ollamaGenerate(prompt: string, parameters?: OllamaGenerateParamet
       body: JSON.stringify(params)
     })
     if (!response.ok) {
-      logseq.UI.showMsg("Coudln't fulfill request make sure that ollama service is running and make sure there is no typo in host or model name")
+      logseq.UI.showMsg("Coudln't fulfill request make sure that ollama service is running and make sure there is no typo in scheme, host or model name")
       throw new Error("Error in Ollama request: " + response.statusText)
     }
     const data = await response.json()
     return data
   } catch (e: any) {
     console.error("ERROR: ", e)
-    logseq.App.showMsg("Coudln't fulfill request make sure that ollama service is running and make sure there is no typo in host or model name")
+    logseq.App.showMsg("Coudln't fulfill request make sure that ollama service is running and make sure there is no typo in scheme, host or model name")
   }
 }
 
@@ -109,7 +109,7 @@ async function promptLLM(prompt: string) {
     throw new Error("Couldn't find logseq settings");
   }
   try {
-    const response = await fetch(`http://${logseq.settings.host}/api/generate`, {
+    const response = await fetch(`${logseq.settings.scheme}://${logseq.settings.host}/api/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ async function promptLLM(prompt: string) {
       }),
     });
     if (!response.ok) {
-      logseq.App.showMsg("Couldn't fulfill request. Make sure Ollama service is running and there are no typos in host or model name.");
+      logseq.App.showMsg("Couldn't fulfill request. Make sure Ollama service is running and there are no typos in scheme, host or model name.");
       throw new Error("Error in Ollama request: " + response.statusText);
     }
 
@@ -133,7 +133,7 @@ async function promptLLM(prompt: string) {
     return filteredResponse;
   } catch (e: any) {
     console.error("ERROR: ", e);
-    logseq.App.showMsg("Couldn't fulfill request. Make sure Ollama service is running and there are no typos in host or model name.");
+    logseq.App.showMsg("Couldn't fulfill request. Make sure Ollama service is running and there are no typos in scheme, host or model name.");
   }
 }
 

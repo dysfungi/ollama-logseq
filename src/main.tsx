@@ -23,6 +23,13 @@ let settings: SettingSchemaDesc[] = [
     default: "localhost:11434"
   },
   {
+    key: "scheme",
+    type: "string",
+    title: "URL Scheme",
+    description: "Set the URL scheme of your ollama model",
+    default: "http",
+  },
+  {
     key: "model",
     type: "string",
     title: "LLM Model",

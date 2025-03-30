@@ -88,6 +88,7 @@ async function ollamaGenerate(prompt: string, parameters?: OllamaGenerateParamet
     const response = await fetch(`${logseq.settings.scheme}://${logseq.settings.host}/api/generate`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${logseq.settings.api_key}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params)
@@ -112,6 +113,7 @@ async function promptLLM(prompt: string) {
     const response = await fetch(`${logseq.settings.scheme}://${logseq.settings.host}/api/generate`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${logseq.settings.api_key}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({

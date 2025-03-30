@@ -16,6 +16,13 @@ const pluginId = PL.id;
 
 let settings: SettingSchemaDesc[] = [
   {
+    key: "api_key",
+    type: "string",
+    title: "API Key (Bearer Token)",
+    description: "Set the API Key of your ollama model",
+    default: ""
+  },
+  {
     key: "host",
     type: "string",
     title: "Host",
